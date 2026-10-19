@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hanna Abigail B. Beter | Computer Engineering Portfolio</title>
+  <meta name="description" content="Portfolio of Hanna Abigail B. Beter - Computer Engineering Student, UI/UX Designer & Systems Developer featuring a sleek 3D Sports Car aesthetic.">
+  
+  <!-- Fonts: Orbitron for Automotive HUD & Inter for Telemetry Clarity -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-mode">
+
+
+  <!-- Navigation HUD -->
+  <header class="hud-navbar">
+    <div class="nav-container">
+      <a href="#cockpit" class="brand-emblem">
+        <div class="emblem-hex">
+          <i class="fa-solid fa-gauge-high"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">H. BETER</span>
+          <span class="brand-sub">BSCpE // SYS.01</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#cockpit" class="nav-item active"><span class="nav-index">01</span> COCKPIT</a>
+        <a href="#specs" class="nav-item"><span class="nav-index">02</span> TECH SPECS</a>
+        <a href="#garage" class="nav-item"><span class="nav-index">03</span> GARAGE</a>
+        <a href="#telemetry" class="nav-item"><span class="nav-index">04</span> TELEMETRY</a>
+        <a href="#comms" class="nav-item"><span class="nav-index">05</span> COMMS</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Download Resume Button (Prominent Header CTA) -->
+        <a href="hanna.pdf" download="hanna.pdf" class="btn btn-neon-red nav-cta">
+          <i class="fa-solid fa-file-arrow-down"></i>
+          <span>RESUME.PDF</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================================ -->
+    <!-- FACEBOOK-STYLE PROFILE COCKPIT                               -->
+    <!-- Cover Video Banner + Overlapping Profile Photo + Identity    -->
+    <!-- ============================================================ -->
+    <section id="cockpit" class="section profile-cover-section">
+      <div class="container">
+        
+        <div class="fb-profile-card">
+          
+          <!-- 1. COVER VIDEO BANNER (Stays at the top, like Facebook Cover) -->
+          <div class="fb-cover-banner">
+            <video id="cover-video" autoplay loop muted playsinline preload="auto">
+              <source src="background.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+
+            <div class="cover-gradient-tint"></div>
+
+            <!-- Audio Unmute Toggle Button (Facebook Reel / Story Style) -->
+            <button id="video-sound-toggle" class="cover-sound-btn" title="Click to Toggle Video Sound" aria-label="Toggle Sound">
+              <i class="fa-solid fa-volume-xmark" id="sound-icon"></i>
+              <span id="sound-text">UNMUTE SOUND</span>
+            </button>
+          </div>
+
+          <!-- 2. PROFILE HEADER (Circular Avatar Overlapping Cover + Bio + CTAs) -->
+          <div class="fb-profile-header">
+            
+            <!-- Circular Profile Picture Holder (Overlapping the Cover) -->
+            <!-- ============================================================ -->
+            <!-- [PROFILE PHOTO HOLDER]                                       -->
+            <!-- Change 'images/CV.png' below to your photo file name if needed-->
+            <!-- ============================================================ -->
+            <div class="fb-avatar-container">
+              <!-- 3D Drifting Sports Car Avatar Frame (Three.js WebGL Canvas) -->
+              <canvas id="avatar-drift-canvas" class="avatar-drift-canvas" width="280" height="280" aria-label="3D Drifting Sports Car Avatar Frame"></canvas>
+              <div class="fb-avatar-ring">
+                <img 
+                  id="profile-img" 
+                  src="images/CV.png" 
+                  alt="Hanna Abigail B. Beter - Profile" 
+                  class="fb-avatar-img"
+                  onerror="this.onerror=null; this.src='profile.jpg';"
+                >
+                <div class="avatar-glow-ring"></div>
+              </div>
+              <div class="avatar-status-pip" title="Status: Calibration Optimal"></div>
+            </div>
+
+            <!-- Profile Info & Identity -->
+            <div class="fb-identity-col">
+              <h1 class="fb-driver-name">
+                <span class="neon-highlight">HANNA ABIGAIL</span> B.<br>
+                BETER
+              </h1>
+              
+              <div class="fb-badge-row">
+                <span class="spec-verified-badge" title="Computer Engineering Degree">
+                  <i class="fa-solid fa-circle-check"></i> BSCpE
+                </span>
+              </div>
+              
+              <div class="fb-driver-title">
+                <i class="fa-solid fa-microchip"></i> Bachelor of Science in Computer Engineering
+              </div>
+              
+              <p class="fb-driver-bio">
+                <strong class="bio-spec">Lead UI/UX Designer</strong> and <strong class="bio-spec">Computer Engineer</strong> specializing in seamless hardware-software integration and robust system architecture, dedicated to building efficient and scalable digital products.
+              </p>
+            </div>
+
+            <!-- Action Buttons (Right-aligned, Facebook Button Style with racing glow) -->
+            <div class="fb-actions-col">
+              <a href="hanna.pdf" download="hanna.pdf" class="btn btn-primary-racing">
+                <i class="fa-solid fa-file-lines"></i>
+                <span>DOWNLOAD RESUME</span>
+                <span class="btn-spec-tag">PDF</span>
+              </a>
+
+              <a href="#garage" class="btn btn-secondary-carbon">
+                <i class="fa-solid fa-car-side"></i>
+                <span>GARAGE BUILDS</span>
+              </a>
+
+              <div class="fb-social-quicklinks">
+                <a href="https://github.com/hnnbtr30" target="_blank" rel="noopener noreferrer" class="btn btn-icon-carbon" title="GitHub: @hnnbtr30">
+                  <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hannabeter30@gmail.com" target="_blank" rel="noopener noreferrer" class="btn btn-icon-carbon" title="Gmail: hannabeter30@gmail.com (Open Web Composer)">
+                  <i class="fa-solid fa-envelope"></i>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 3. QUICK TELEMETRY STATS STRIP -->
+          <div class="fb-telemetry-bar">
+            <div class="telemetry-cell">
+              <div class="cell-label">PROJECTS BUILT</div>
+              <div class="cell-value" data-target="5">5</div>
+              <div class="cell-sub">SYSTEMS & EMBEDDED</div>
+            </div>
+            <div class="telemetry-cell">
+              <div class="cell-label">TECH ARSENAL</div>
+              <div class="cell-value" data-target="10">10</div>
+              <div class="cell-sub">LANGUAGES & TOOLS</div>
+            </div>
+            <div class="telemetry-cell">
+              <div class="cell-label">SYSTEM UPTIME</div>
+              <div class="cell-value" data-target="99.9">99.9%</div>
+              <div class="cell-sub">PRECISION TOLERANCE</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TECH SPECS / POWERTRAIN (TECH STACK) -->
+    <section id="specs" class="section tech-specs-section">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="header-pre">
+            <i class="fa-solid fa-microchip"></i>
+            <span>POWERTRAIN & DIAGNOSTICS</span>
+          </div>
+          <h2 class="section-title">THE TECH <span class="neon-highlight">STACK</span></h2>
+          <p class="section-subtitle">
+            eight core performance tools, engineering languages, and design suites driving robust hardware-to-software pipelines.
+          </p>
+        </div>
+
+        <div class="tech-grid">
+          
+          <!-- VS Code -->
+          <div class="tech-card" data-tilt>
+            <div class="card-ambient-glow"></div>
+            <div class="tech-icon-box">
+              <i class="fa-solid fa-code"></i>
+            </div>
+            <div class="tech-meta">
+              <span class="tech-type">PRIMARY IDE</span>
+              <h3 class="tech-name">VS Code</h3>
+            </div>
+            <div class="tech-gauge">
+              <div class="gauge-fill" style="--gauge-w: 95%;"></div>
+            </div>
+            <div class="tech-telemetry">
+              <span>COCKPIT WORKBENCH</span>
+              <span class="telemetry-stat">90%</span>
+            </div>
+          </div>
+
+          <!-- Figma -->
+          <div class="tech-card" data-tilt>
+            <div class="card-ambient-glow"></div>
+            <div class="tech-icon-box">
+              <i class="fa-brands fa-figma"></i>
+            </div>
+            <div class="tech-meta">
+              <span class="tech-type">UI/UX</span>
+              <h3 class="tech-name">Figma</h3>
+            </div>
+            <div class="tech-gauge">
+              <div class="gauge-fill" style="--gauge-w: 92%;"></div>
+            </div>
+            <div class="tech-telemetry">
+              <span>DESIGN & FLOW ARCHITECTURE</span>
+              <span class="telemetry-stat">95%</span>
+            </div>
+          </div>
+
+          <!-- HTML5 -->
+          <div class="tech-card" data-tilt>
+            <div class="card-ambient-glow"></div>
+            <div class="tech-icon-box">
+              <i class="fa-brands fa-html5"></i>
+            </div>
+            <div class="tech-meta">
+              <span class="tech-type">MARKUP ARCHITECTURE</span>
+              <h3 class="tech-name">HTML</h3>
+            </div>
+            <div class="tech-gauge">
+              <div class="gauge-fill" style="--gauge-w: 98%;"></div>
+            </div>
+            <div class="tech-telemetry">
+              <span>SEMANTIC CHASSIS</span>
+              <span class="telemetry-stat">90%</span>
+            </div>
+          </div>
+
+
+          <!-- JavaScript -->
+          <div class="tech-card" data-tilt>
+            <div class="card-ambient-glow"></div>
+            <div class="tech-icon-box">
+              <i class="fa-brands fa-js"></i>
+            </div>
+            <div class="tech-meta">
+              <span class="tech-type">CLIENT TELEMETRY</span>
+              <h3 class="tech-name">JavaScript</h3>
+            </div>
+            <div class="tech-gauge">
+              <div class="gauge-fill" style="--gauge-w: 90%;"></div>
+            </div>
+            <div class="tech-telemetry">
+              <span>EVENT-DRIVEN DYNAMICS</span>
+              <span class="telemetry-stat">50%</span>
+            </div>
+          </div>
+
+          <!-- Java -->
+          <div class="tech-card" data-tilt>
+            <div class="card-ambient-glow"></div>
+            <div class="tech-icon-box">
+              <i class="fa-brands fa-java"></i>
+            </div>
+            <div class="tech-meta">
+              <span class="tech-type">OOP ENGINE</span>
+              <h3 class="tech-name">Java</h3>
+            </div>
+            <div class="tech-gauge">
+              <div class="gauge-fill" style="--gauge-w: 88%;"></div>
+            </div>
+            <div class="tech-telemetry">
+              <span>ENTERPRISE STRUCTURES</span>
+              <span class="telemetry-stat">90%</span>
+            </div>
+          </div>
+
+
+          <!-- C# -->
+          <div class="tech-card" data-tilt>
+            <div class="card-ambient-glow"></div>
+            <div class="tech-icon-box">
+              <i class="fa-solid fa-code-merge"></i>
+            </div>
+            <div class="tech-meta">
+              <span class="tech-type">APPLICATION SYSTEMS</span>
+              <h3 class="tech-name">C#</h3>
+            </div>
+            <div class="tech-gauge">
+              <div class="gauge-fill" style="--gauge-w: 86%;"></div>
+            </div>
+            <div class="tech-telemetry">
+              <span>ROBUST .NET WORKFLOWS</span>
+              <span class="telemetry-stat">95%</span>
+            </div>
+          </div>
+
+          <!-- C++ -->
+          <div class="tech-card" data-tilt>
+            <div class="card-ambient-glow"></div>
+            <div class="tech-icon-box">
+              <i class="fa-solid fa-bolt-lightning"></i>
+            </div>
+            <div class="tech-meta">
+              <span class="tech-type">EMBEDDED & HARDWARE</span>
+              <h3 class="tech-name">C++</h3>
+            </div>
+            <div class="tech-gauge">
+              <div class="gauge-fill" style="--gauge-w: 89%;"></div>
+            </div>
+            <div class="tech-telemetry">
+              <span>MICROCONTROLLER PRECISION</span>
+              <span class="telemetry-stat">86%</span>
+            </div>
+          </div>
+
+          <!-- MySQL -->
+          <div class="tech-card" data-tilt>
+            <div class="card-ambient-glow"></div>
+            <div class="tech-icon-box">
+              <i class="fa-solid fa-database"></i>
+            </div>
+            <div class="tech-meta">
+              <span class="tech-type">RELATIONAL DATABASE</span>
+              <h3 class="tech-name">MySQL</h3>
+            </div>
+            <div class="tech-gauge">
+              <div class="gauge-fill" style="--gauge-w: 90%;"></div>
+            </div>
+            <div class="tech-telemetry">
+              <span>SCHEMAS & DATA TELEMETRY</span>
+              <span class="telemetry-stat">75%</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PROTOTYPE GARAGE (5 PROJECTS) -->
+    <section id="garage" class="section garage-section">
+      <div class="container">
+        
+        <div class="section-header">
+          <div class="header-pre">
+            <i class="fa-solid fa-warehouse"></i>
+            <span>ENGINEERED BUILDS // 5 UNITS</span>
+          </div>
+          <h2 class="section-title">THE PROTOTYPE <span class="neon-highlight">GARAGE</span></h2>
+          <p class="section-subtitle">
+            A lineup of high-precision software systems, embedded hardware prototypes, and civic tech platforms engineered with meticulous attention to telemetry and user flow.
+          </p>
+        </div>
+
+        <div class="garage-deck">
+
+          <!-- PROJECT 01: DialyCare -->
+          <article class="project-card" data-tilt>
+            <div class="card-glass-frame">
+              <div class="project-header-bar">
+                <div class="header-unit-info">
+                  <span class="unit-code">SPEC // UNIT 01</span>
+                  <span class="status-indicator live">CLINICAL SUITE</span>
+                </div>
+                <div class="category-pill"><i class="fa-solid fa-network-wired"></i> Development & Systems</div>
+              </div>
+
+              <div class="project-body">
+                <h3 class="project-title">DialyCare</h3>
+                <h4 class="project-subtitle">Dialysis Management & Patient Care Coordination System</h4>
+
+                <!-- Engineering Role & Focus HUD -->
+                <div class="spec-cluster">
+                  <div class="spec-box role-box">
+                    <span class="spec-tag">MY ROLE</span>
+                    <strong class="spec-value">System Flow Design & UI/UX Architecture</strong>
+                  </div>
+                  <div class="spec-box focus-box">
+                    <span class="spec-tag">ENGINEERING FOCUS</span>
+                    <strong class="spec-value">Multi-user clinical chair management, vitals telemetry</strong>
+                  </div>
+                </div>
+
+                <p class="project-summary">
+                  Designed an aerodynamic clinical chair management flow and high-clarity patient telemetry dashboard. Optimized critical response time by structuring real-time vital sign readouts into an intuitive multi-user coordinator.
+                </p>
+
+                <div class="project-footer">
+                  <div class="tech-pill-list">
+                    <span class="tpill">Figma</span>
+                    <span class="tpill">JavaScript</span>
+                    <span class="tpill">MySQL</span>
+                    <span class="tpill">CSS3</span>
+                  </div>
+                  <a href="#comms" class="project-action-link">
+                    <span>SPECS</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 02: iQueue -->
+          <article class="project-card" data-tilt>
+            <div class="card-glass-frame">
+              <div class="project-header-bar">
+                <div class="header-unit-info">
+                  <span class="unit-code">SPEC // UNIT 02</span>
+                  <span class="status-indicator live">ACADEMIC FLOW</span>
+                </div>
+                <div class="category-pill"><i class="fa-solid fa-server"></i> Development & Systems</div>
+              </div>
+
+              <div class="project-body">
+                <h3 class="project-title">iQueue</h3>
+                <h4 class="project-subtitle">Student Document Request & Appointment Management System</h4>
+
+                <div class="spec-cluster">
+                  <div class="spec-box role-box">
+                    <span class="spec-tag">MY ROLE</span>
+                    <strong class="spec-value">Systems Analysis & Front-End Concept Lead</strong>
+                  </div>
+                  <div class="spec-box focus-box">
+                    <span class="spec-tag">ENGINEERING FOCUS</span>
+                    <strong class="spec-value">Digital token queues, registrar administration</strong>
+                  </div>
+                </div>
+
+                <p class="project-summary">
+                  Engineered front-end queue visualization and administrative control terminals for university registrar offices. Replaced physical bottleneck lines with an algorithmic digital token system and real-time scheduling telemetry.
+                </p>
+
+                <div class="project-footer">
+                  <div class="tech-pill-list">
+                    <span class="tpill">HTML5/CSS3</span>
+                    <span class="tpill">JavaScript</span>
+                    <span class="tpill">MySQL</span>
+                    <span class="tpill">VS Code</span>
+                  </div>
+                  <a href="#comms" class="project-action-link">
+                    <span>SPECS</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 03: iPrepare -->
+          <article class="project-card" data-tilt>
+            <div class="card-glass-frame">
+              <div class="project-header-bar">
+                <div class="header-unit-info">
+                  <span class="unit-code">SPEC // UNIT 03</span>
+                  <span class="status-indicator live">CIVIC ED</span>
+                </div>
+                <div class="category-pill"><i class="fa-solid fa-compass-drafting"></i> UI/UX & Interactive Design</div>
+              </div>
+
+              <div class="project-body">
+                <h3 class="project-title">iPrepare</h3>
+                <h4 class="project-subtitle">Community Disaster Preparedness & Education Platform</h4>
+
+                <div class="spec-cluster">
+                  <div class="spec-box role-box">
+                    <span class="spec-tag">MY ROLE</span>
+                    <strong class="spec-value">Interactive UI/UX & Curriculum Mapping</strong>
+                  </div>
+                  <div class="spec-box focus-box">
+                    <span class="spec-tag">ENGINEERING FOCUS</span>
+                    <strong class="spec-value">Hazard modules, interactive Go-Bag checklist</strong>
+                  </div>
+                </div>
+
+                <p class="project-summary">
+                  Crafted high-retention interactive emergency simulations and dynamic Go-Bag preparation modules. Leveraged gamified milestone checkpoints and accessible design systems to empower citizen readiness during typhoons and earthquakes.
+                </p>
+
+                <div class="project-footer">
+                  <div class="tech-pill-list">
+                    <span class="tpill">Figma</span>
+                    <span class="tpill">Interactive UI</span>
+                    <span class="tpill">CSS Motion</span>
+                    <span class="tpill">JS</span>
+                  </div>
+                  <a href="#comms" class="project-action-link">
+                    <span>SPECS</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 04: OxyCheck -->
+          <article class="project-card" data-tilt>
+            <div class="card-glass-frame">
+              <div class="project-header-bar">
+                <div class="header-unit-info">
+                  <span class="unit-code">SPEC // UNIT 04</span>
+                  <span class="status-indicator live">HARDWARE BUS</span>
+                </div>
+                <div class="category-pill"><i class="fa-solid fa-microchip"></i> Hardware & Embedded Systems</div>
+              </div>
+
+              <div class="project-body">
+                <h3 class="project-title">OxyCheck</h3>
+                <h4 class="project-subtitle">Portable Environmental Air-Quality Monitoring Prototype</h4>
+
+                <div class="spec-cluster">
+                  <div class="spec-box role-box">
+                    <span class="spec-tag">MY ROLE</span>
+                    <strong class="spec-value">Hardware Circuit Design & Sensor Logic</strong>
+                  </div>
+                  <div class="spec-box focus-box">
+                    <span class="spec-tag">ENGINEERING FOCUS</span>
+                    <strong class="spec-value">Microcontroller sensor bus, low-power circuit architecture</strong>
+                  </div>
+                </div>
+
+                <p class="project-summary">
+                  Engineered an integrated environmental air-quality sensing unit with optimized power consumption. Built sensor bus communication logic, particulate matter calibration algorithms, and hardware alert indicators for field monitoring.
+                </p>
+
+                <div class="project-footer">
+                  <div class="tech-pill-list">
+                    <span class="tpill">C++ / C#</span>
+                    <span class="tpill">Microcontrollers</span>
+                    <span class="tpill">Sensors</span>
+                    <span class="tpill">Circuitry</span>
+                  </div>
+                  <a href="#comms" class="project-action-link">
+                    <span>SPECS</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 05: CableCut Express -->
+          <article class="project-card" data-tilt>
+            <div class="card-glass-frame">
+              <div class="project-header-bar">
+                <div class="header-unit-info">
+                  <span class="unit-code">SPEC // UNIT 05</span>
+                  <span class="status-indicator live">MECHATRONICS</span>
+                </div>
+                <div class="category-pill"><i class="fa-solid fa-gear"></i> Hardware & Technopreneurship</div>
+              </div>
+
+              <div class="project-body">
+                <h3 class="project-title">CableCut Express</h3>
+                <h4 class="project-subtitle">Automated Wire Measuring & Cutting Kiosk Concept</h4>
+
+                <div class="spec-cluster">
+                  <div class="spec-box role-box">
+                    <span class="spec-tag">MY ROLE</span>
+                    <strong class="spec-value">Engineering Concept & Automation Flow</strong>
+                  </div>
+                  <div class="spec-box focus-box">
+                    <span class="spec-tag">ENGINEERING FOCUS</span>
+                    <strong class="spec-value">Stepper motor feed calibration, safety interlocks</strong>
+                  </div>
+                </div>
+
+                <p class="project-summary">
+                  Designed the mechatronics flow and commercial kiosk model for automated wire spool dispensation. Engineered stepper motor feed calibration algorithms, mechanical safety interlock logic, and touch-terminal kiosk control.
+                </p>
+
+                <div class="project-footer">
+                  <div class="tech-pill-list">
+                    <span class="tpill">C++ / Python</span>
+                    <span class="tpill">Stepper Motors</span>
+                    <span class="tpill">Automation</span>
+                    <span class="tpill">CAD / Concept</span>
+                  </div>
+                  <a href="#comms" class="project-action-link">
+                    <span>SPECS</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TELEMETRY / ENGINEERING PHILOSOPHY -->
+    <section id="telemetry" class="section telemetry-section">
+      <div class="container">
+        <div class="cockpit-hud-banner">
+          <div class="banner-grid">
+            <div class="hud-stat-box">
+              <div class="stat-hdr">DEGREE TRACK</div>
+              <div class="stat-main">BSCpE</div>
+              <div class="stat-dtl">Computer Engineering Disciplines</div>
+            </div>
+            <div class="hud-stat-box">
+              <div class="stat-hdr">FOCUS VECTOR</div>
+              <div class="stat-main neon-cyan">DUAL-CORE</div>
+              <div class="stat-dtl">Systems Architecture + UI/UX Flow</div>
+            </div>
+            <div class="hud-stat-box">
+              <div class="stat-hdr">RELIABILITY</div>
+              <div class="stat-main neon-red">OPTIMAL</div>
+              <div class="stat-dtl">Fault-Tolerant Low-Latency Logic</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / COMMS SECTION -->
+    <section id="comms" class="section comms-section">
+      <div class="container">
+        <div class="comms-panel">
+          <div class="panel-rim"></div>
+          
+          <div class="comms-grid">
+            <div class="comms-header-info">
+              <div class="header-pre">
+                <i class="fa-solid fa-satellite-dish"></i>
+                <span>DIRECT PIT RADIO</span>
+              </div>
+              <h2 class="section-title">ESTABLISH <span class="neon-highlight">COMMS</span></h2>
+              <p class="comms-desc">
+                Ready to collaborate on high-performance software systems, embedded hardware builds, or innovative UI/UX architecture. Transmit your message directly to my station.
+              </p>
+
+              <!-- Contact Channels Grid -->
+              <div class="comms-channels">
+                <!-- Email Card (Direct Gmail Web Composer like GitHub) -->
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hannabeter30@gmail.com" target="_blank" rel="noopener noreferrer" class="channel-card" title="Open Gmail Web Composer to hannabeter30@gmail.com">
+                  <div class="channel-icon-wrap">
+                    <i class="fa-solid fa-envelope"></i>
+                  </div>
+                  <div class="channel-info">
+                    <span class="channel-label">ELECTRONIC MAIL (GMAIL)</span>
+                    <span class="channel-value">hannabeter30@gmail.com</span>
+                    <span class="channel-hint">Open Gmail Composer <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                  </div>
+                </a>
+
+                <!-- GitHub Card -->
+                <a href="https://github.com/hnnbtr30" target="_blank" rel="noopener noreferrer" class="channel-card">
+                  <div class="channel-icon-wrap">
+                    <i class="fa-brands fa-github"></i>
+                  </div>
+                  <div class="channel-info">
+                    <span class="channel-label">CODE REPOSITORY</span>
+                    <span class="channel-value">github.com/hnnbtr30</span>
+                    <span class="channel-hint">Inspect public code commits <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                  </div>
+                </a>
+              </div>
+
+              <!-- Resume Download Box in Contact Area -->
+              <div class="comms-resume-box">
+                <div class="resume-meta">
+                  <span class="r-title"><i class="fa-solid fa-id-card-clip"></i> CANDIDATE PROFILE</span>
+                  <span class="r-sub">Complete Academic, Engineering & Technical Dossier</span>
+                </div>
+                <a href="hanna.pdf" download="hanna.pdf" class="btn btn-neon-red">
+                  <i class="fa-solid fa-file-arrow-down"></i>
+                  <span>DOWNLOAD RESUME (PDF)</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Working Contact Form (Connected to Gmail via Web3Forms) -->
+            <div class="comms-form-terminal">
+              <div class="form-header-bar">
+                <div class="form-title-wrap">
+                  <span class="live-pip"></span>
+                  <span class="form-title">PIT TELEMETRY TRANSMITTER</span>
+                </div>
+                <span class="form-badge">GMAIL DIRECT LINK</span>
+              </div>
+
+              <form id="pit-contact-form" class="pit-contact-form" novalidate>
+                <!-- Web3Forms Access Key & Destination Configuration -->
+                <input type="hidden" name="access_key" id="web3forms-key" value="7b91d4e6-8c43-4e89-9d95-8b9a12c4d6a1">
+                <input type="hidden" name="from_name" value="Hanna Portfolio Dispatch">
+                <input type="hidden" name="to_email" value="hannabeter30@gmail.com">
+                <input type="checkbox" name="botcheck" style="display: none;">
+
+                <!-- Email Input Field -->
+                <div class="form-field-group" id="group-email">
+                  <label for="contact-email" class="form-label">
+                    <i class="fa-solid fa-at"></i> SENDER EMAIL
+                  </label>
+                  <div class="input-container">
+                    <input 
+                      type="email" 
+                      id="contact-email" 
+                      name="email" 
+                      class="form-input" 
+                      placeholder="your email address" 
+                      required 
+                      autocomplete="email"
+                    >
+                    <i class="fa-solid fa-circle-check field-check-icon"></i>
+                  </div>
+                  <span class="field-error-msg" id="email-error"></span>
+                </div>
+
+                <!-- Subject Input Field -->
+                <div class="form-field-group" id="group-subject">
+                  <label for="contact-subject" class="form-label">
+                    <i class="fa-solid fa-tag"></i> SUBJECT
+                  </label>
+                  <div class="input-container">
+                    <input 
+                      type="text" 
+                      id="contact-subject" 
+                      name="subject" 
+                      class="form-input" 
+                      placeholder="What's this about?" 
+                      required
+                    >
+                    <i class="fa-solid fa-circle-check field-check-icon"></i>
+                  </div>
+                  <span class="field-error-msg" id="subject-error"></span>
+                </div>
+
+                <!-- Message Input Field -->
+                <div class="form-field-group" id="group-message">
+                  <label for="contact-message" class="form-label">
+                    <i class="fa-solid fa-comment-dots"></i> MESSAGE
+                  </label>
+                  <div class="input-container">
+                    <textarea 
+                      id="contact-message" 
+                      name="message" 
+                      class="form-textarea" 
+                      rows="4" 
+                      placeholder="Write your message here..." 
+                      required
+                    ></textarea>
+                    <i class="fa-solid fa-circle-check field-check-icon"></i>
+                  </div>
+                  <span class="field-error-msg" id="message-error"></span>
+                </div>
+
+                <!-- Dark Neon HUD Status Alert Banner (Success / Error) -->
+                <div id="form-status-alert" class="form-status-alert" role="alert" style="display: none;">
+                  <div class="alert-icon-wrap" id="alert-icon-box"></div>
+                  <div class="alert-content">
+                    <span class="alert-headline" id="alert-title"></span>
+                    <p class="alert-description" id="alert-desc"></p>
+                  </div>
+                </div>
+
+                <!-- Send Message Button -->
+                <div class="form-submit-row">
+                  <button type="submit" id="contact-submit-btn" class="btn btn-primary-racing btn-send-form">
+                    <i class="fa-solid fa-paper-plane" id="btn-icon"></i>
+                    <span id="btn-text">SEND MESSAGE</span>
+                    <span class="btn-spec-tag">GMAIL</span>
+                  </button>
+                  <span class="routing-target-note">
+                    Direct routing to <strong class="neon-highlight">hannabeter30@gmail.com</strong>
+                  </span>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- AUTOMOTIVE FOOTER -->
+  <footer class="hud-footer">
+    <div class="container footer-content">
+      <div class="footer-left">
+        <span class="footer-brand">HANNA ABIGAIL B. BETER</span>
+        <span class="footer-copy">© 2026 BSCpE Portfolio. Engineered for Speed, Precision & Reliability.</span>
+      </div>
+      <div class="footer-right">
+        <a href="#cockpit" class="back-to-top" title="Return to Top of Cockpit">
+          <i class="fa-solid fa-angles-up"></i>
+          <span>RETURN TO APEX</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Three.js Library for 3D Drifting Sports Car Avatar Frame (Local + CDN Fallback) -->
+  <script src="three.min.js"></script>
+  <script>
+    if (typeof THREE === 'undefined') {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\/script>');
+    }
+  </script>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
