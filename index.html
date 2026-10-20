@@ -14,6 +14,9 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
+  <!-- Simple Icons for Brand & AI Technology Logos (Gemini, ChatGPT, Claude) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-icons-font@v13/font/simple-icons.min.css">
+  
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -366,7 +369,7 @@
           <div class="tech-card" data-tilt>
             <div class="card-ambient-glow"></div>
             <div class="tech-icon-box">
-              <i class="fa-brands fa-Google Gemini"></i>
+              <i class="si si-googlegemini"></i>
             </div>
             <div class="tech-meta">
               <span class="tech-type">AI TOOL</span>
@@ -376,6 +379,8 @@
               <div class="gauge-fill" style="--gauge-w: 98%;"></div>
             </div>
             <div class="tech-telemetry">
+              <span>MULTIMODAL AI & REASONING</span>
+              <span class="telemetry-stat">98%</span>
             </div>
           </div>
 
@@ -383,7 +388,7 @@
           <div class="tech-card" data-tilt>
             <div class="card-ambient-glow"></div>
             <div class="tech-icon-box">
-              <i class="fa-brands fa-OpenAI"></i>
+              <i class="si si-openai"></i>
             </div>
             <div class="tech-meta">
               <span class="tech-type">AI TOOL</span>
@@ -393,6 +398,8 @@
               <div class="gauge-fill" style="--gauge-w: 98%;"></div>
             </div>
             <div class="tech-telemetry">
+              <span>PROMPT ENGINEERING & CODE</span>
+              <span class="telemetry-stat">98%</span>
             </div>
           </div>
 
@@ -400,7 +407,7 @@
           <div class="tech-card" data-tilt>
             <div class="card-ambient-glow"></div>
             <div class="tech-icon-box">
-              <i class="fa-brands fa-ClaudeAI"></i>
+              <i class="si si-anthropic"></i>
             </div>
             <div class="tech-meta">
               <span class="tech-type">AI TOOL</span>
@@ -410,6 +417,8 @@
               <div class="gauge-fill" style="--gauge-w: 98%;"></div>
             </div>
             <div class="tech-telemetry">
+              <span>SYSTEM ARCHITECTURE & ANALYSIS</span>
+              <span class="telemetry-stat">98%</span>
             </div>
           </div>
 
@@ -664,7 +673,7 @@
               <!-- Contact Channels Grid -->
               <div class="comms-channels">
                 <!-- Email Card (Direct Gmail Web Composer like GitHub) -->
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hannabeter30@gmail.com" target="_blank" rel="noopener noreferrer" class="channel-card" title="Open Gmail Web Composer to hannabeter30@gmail.com">
+                <a href="https://mail.google.com/mail/u/0/?view=cm&popout=1&to=hannabeter30@gmail.com" target="_blank" rel="noopener noreferrer" class="channel-card" title="Open Gmail Web Composer to hannabeter30@gmail.com">
                   <div class="channel-icon-wrap">
                     <i class="fa-solid fa-envelope"></i>
                   </div>
@@ -711,12 +720,17 @@
                 <span class="form-badge">GMAIL DIRECT LINK</span>
               </div>
 
-              <form id="pit-contact-form" class="pit-contact-form" novalidate>
+              <form id="pit-contact-form" class="pit-contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
                 <!-- Web3Forms Access Key & Destination Configuration -->
-                <input type="hidden" name="access_key" id="web3forms-key" value="7b91d4e6-8c43-4e89-9d95-8b9a12c4d6a1">
+                <input type="hidden" name="access_key" id="web3forms-key" value="e9a4f752-c1ea-4846-bc7e-dc19d23ec30e">
                 <input type="hidden" name="from_name" value="Hanna Portfolio Dispatch">
                 <input type="hidden" name="to_email" value="hannabeter30@gmail.com">
                 <input type="checkbox" name="botcheck" style="display: none;">
+
+                <!-- Green Success / Status Notification Banner (above form inputs) -->
+                <div id="form-status-alert" class="form-status-banner" role="alert" style="display: none;">
+                  <span id="alert-desc" class="status-banner-text"> Message sent! I'll get back to you soon.</span>
+                </div>
 
                 <!-- Email Input Field -->
                 <div class="form-field-group" id="group-email">
@@ -774,15 +788,6 @@
                     <i class="fa-solid fa-circle-check field-check-icon"></i>
                   </div>
                   <span class="field-error-msg" id="message-error"></span>
-                </div>
-
-                <!-- Dark Neon HUD Status Alert Banner (Success / Error) -->
-                <div id="form-status-alert" class="form-status-alert" role="alert" style="display: none;">
-                  <div class="alert-icon-wrap" id="alert-icon-box"></div>
-                  <div class="alert-content">
-                    <span class="alert-headline" id="alert-title"></span>
-                    <p class="alert-description" id="alert-desc"></p>
-                  </div>
                 </div>
 
                 <!-- Send Message Button -->

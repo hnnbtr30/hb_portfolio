@@ -506,9 +506,11 @@ function init3DAvatarDrift() {
 }
 
 /* ==========================================================================
-   3. Pit Radio Contact Terminal (Gmail Direct Routing & Form Validation)
-   Connected directly to Gmail (hannabeter30@gmail.com). Works seamlessly
-   like GitHub links by opening Gmail Composer with pre-filled telemetry.
+   3. Pit Radio Contact Terminal (Web3Forms API Background Dispatch)
+   Sends message in the background via Web3Forms API without opening any mail app.
+   Uses verified Web3Forms Access Key: e9a4f752-c1ea-4846-bc7e-dc19d23ec30e
+   Shows green notification banner on success, updates button to "Sent",
+   and shows error notice if transmission fails.
    ========================================================================== */
 function initContactForm() {
   const form = document.getElementById('pit-contact-form');
@@ -520,18 +522,15 @@ function initContactForm() {
   const submitBtn = document.getElementById('contact-submit-btn');
   const btnIcon = document.getElementById('btn-icon');
   const btnText = document.getElementById('btn-text');
-
-  const alertBox = document.getElementById('form-status-alert');
-  const alertIcon = document.getElementById('alert-icon-box');
-  const alertTitle = document.getElementById('alert-title');
-  const alertDesc = document.getElementById('alert-desc');
+  const statusAlert = document.getElementById('form-status-alert');
+  const statusText = document.getElementById('alert-desc');
 
   const emailError = document.getElementById('email-error');
   const subjectError = document.getElementById('subject-error');
   const messageError = document.getElementById('message-error');
 
-  const DESTINATION_GMAIL = 'hannabeter30@gmail.com';
-  const EMAIL_REGEX = /^[^s@]+@[^s@]+.[^s@]+$/;
+  const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  let isSending = false;
 
   // Real-time input error clearing
   [emailInput, subjectInput, messageInput].forEach(input => {
@@ -540,8 +539,8 @@ function initContactForm() {
       input.classList.remove('is-invalid');
       const errEl = document.getElementById(`${input.name}-error`);
       if (errEl) errEl.textContent = '';
-      if (alertBox && alertBox.classList.contains('alert-error')) {
-        alertBox.style.display = 'none';
+      if (statusAlert && statusAlert.classList.contains('error')) {
+        statusAlert.style.display = 'none';
       }
     });
   });
@@ -600,82 +599,105 @@ function initContactForm() {
     if (errorEl) errorEl.textContent = '';
   }
 
-  function showAlert(type, title, desc, extraHtml = '') {
-    alertBox.style.display = 'flex';
-    alertBox.className = `form-status-alert alert-${type}`;
-    if (type === 'success') {
-      alertIcon.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+  function showStatus(message, type = 'success') {
+    if (!statusAlert) return;
+    statusAlert.className = `form-status-banner ${type}`;
+    if (statusText) {
+      statusText.textContent = message;
     } else {
-      alertIcon.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+      statusAlert.textContent = message;
     }
-    alertTitle.textContent = title;
-    alertDesc.innerHTML = desc + (extraHtml ? `<br>${extraHtml}` : '');
-    alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    statusAlert.style.display = 'flex';
+    statusAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
-  function hideAlert() {
-    alertBox.style.display = 'none';
+  function hideStatus() {
+    if (statusAlert) statusAlert.style.display = 'none';
   }
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (isSending) return;
 
     if (!validate()) {
-      showAlert('error', 'TELEMETRY REJECTED', 'Please correct the highlighted inputs before transmitting.');
+      [emailInput, subjectInput, messageInput]
+        .find(f => f?.classList.contains('is-invalid'))?.focus();
       return;
     }
 
-    const senderEmail = emailInput.value.trim();
-    const subject = subjectInput.value.trim();
-    const message = messageInput.value.trim();
+    isSending = true;
 
-    // Construct Direct Gmail Web Composer URL (works exactly like GitHub links)
-    const formattedBody = `${message}\n\n===============================\nTELEMETRY DISPATCH DETAILS\nSender Email: ${senderEmail}\nRecipient: ${DESTINATION_GMAIL}\nTimestamp: ${new Date().toLocaleString()}\nPortfolio: Hanna Abigail B. Beter (BSCpE)\n===============================`;
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(DESTINATION_GMAIL)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(formattedBody)}`;
-    const mailtoUrl = `mailto:${DESTINATION_GMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(formattedBody)}`;
-
-    // Set tactile transmitting state
+    // 1. Set sending state on submit button
     submitBtn.disabled = true;
     submitBtn.classList.add('loading');
-    btnIcon.className = 'fa-solid fa-satellite-dish fa-spin';
-    btnText.textContent = 'CONNECTING TO GMAIL...';
-    hideAlert();
+    submitBtn.classList.remove('is-sent');
+    if (btnIcon) btnIcon.className = 'fa-solid fa-circle-notch fa-spin';
+    if (btnText) btnText.textContent = 'Sending…';
+    hideStatus();
 
-    setTimeout(() => {
-      // Open Gmail Web Composer in a new tab (exactly like GitHub link)
-      window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+    // 2. Prepare FormData payload for Web3Forms API
+    const formData = new FormData(form);
+    // Explicitly enforce verified Web3Forms Access Key
+    formData.set('access_key', 'e9a4f752-c1ea-4846-bc7e-dc19d23ec30e');
 
-      // Success HUD confirmation banner with 1-click action buttons
-      const actionButtons = `
-        <div style="margin-top: 12px; display: flex; gap: 10px; flex-wrap: wrap;">
-          <a href="${gmailUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary-racing" style="padding: 7px 14px; font-size: 0.72rem;">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i> OPEN IN GMAIL WEB
-          </a>
-          <a href="${mailtoUrl}" class="btn btn-secondary-carbon" style="padding: 7px 14px; font-size: 0.72rem;">
-            <i class="fa-solid fa-envelope"></i> OPEN DEFAULT CLIENT
-          </a>
-        </div>
-      `;
-
-      showAlert(
-        'success',
-        'TRANSMISSION PREPARED // ROUTED TO GMAIL',
-        `Your message has been formatted and pre-loaded into the Gmail Web Composer directly addressed to <strong class="neon-highlight">${DESTINATION_GMAIL}</strong>. Review and click <strong>Send</strong> in Gmail to deliver your telemetry!`,
-        actionButtons
-      );
-
-      // Reset form fields
-      form.reset();
-      [emailInput, subjectInput, messageInput].forEach(inp => {
-        inp.classList.remove('is-valid', 'is-invalid');
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
       });
+
+      const data = await response.json();
+
+      if (response.ok && (data.success === true || data.success === 'true')) {
+        // SUCCESS: Show green notification banner above the form
+        showStatus("Message sent! I'll get back to you soon.", 'success');
+
+        // Update button state to "Sent"
+        submitBtn.classList.remove('loading');
+        submitBtn.classList.add('is-sent');
+        if (btnIcon) btnIcon.className = 'fa-solid fa-check';
+        if (btnText) btnText.textContent = 'Sent';
+
+        // Clear all form inputs
+        form.reset();
+        [emailInput, subjectInput, messageInput].forEach(inp => {
+          inp.classList.remove('is-valid', 'is-invalid');
+        });
+
+        // Reset button state after 4 seconds
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('is-sent');
+          if (btnIcon) btnIcon.className = 'fa-solid fa-paper-plane';
+          if (btnText) btnText.textContent = 'SEND MESSAGE';
+          isSending = false;
+        }, 4000);
+
+      } else {
+        // FAIL: Show error notice
+        console.error('Web3Forms error response:', data);
+        const errMsg = data.message || 'Direct dispatch could not complete. Please check your connection.';
+        showStatus('⚠️ ' + errMsg, 'error');
+
+        // Reset button state
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('loading');
+        if (btnIcon) btnIcon.className = 'fa-solid fa-paper-plane';
+        if (btnText) btnText.textContent = 'SEND MESSAGE';
+        isSending = false;
+      }
+
+    } catch (err) {
+      console.error('Web3Forms fetch error:', err);
+      showStatus('⚠️ Network error occurred. Please check your connection and try again.', 'error');
 
       // Reset button state
       submitBtn.disabled = false;
       submitBtn.classList.remove('loading');
-      btnIcon.className = 'fa-solid fa-paper-plane';
-      btnText.textContent = 'SEND MESSAGE';
-    }, 450);
+      if (btnIcon) btnIcon.className = 'fa-solid fa-paper-plane';
+      if (btnText) btnText.textContent = 'SEND MESSAGE';
+      isSending = false;
+    }
   });
 }
 

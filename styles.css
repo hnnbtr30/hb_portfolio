@@ -897,6 +897,13 @@ h1, h2, h3, h4 {
   transition: all 0.3s var(--ease-aero);
 }
 
+.tech-icon-box .si {
+  font-size: 2rem;
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+}
+
 .tech-meta {
   margin-bottom: 14px;
 }
@@ -952,17 +959,17 @@ h1, h2, h3, h4 {
   position: relative;
 }
 
+/* "THE PROTOTYPE GARAGE" 2x2 GRID (2 cards on top, 2 cards below) */
 .garage-deck {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 32px;
 }
 
-/* Make first 2 projects prominent */
-@media (min-width: 1080px) {
-  .garage-deck > article:nth-child(1),
-  .garage-deck > article:nth-child(2) {
-    grid-column: span 1;
+@media (max-width: 900px) {
+  .garage-deck {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 }
 
@@ -1550,6 +1557,37 @@ h1, h2, h3, h4 {
   min-height: 16px;
 }
 
+/* Green Notification Banner Style (Placed above form inputs, matching user reference) */
+.form-status-banner {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 18px;
+  border-radius: 8px;
+  font-family: var(--font-hud, inherit);
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  line-height: 1.4;
+  animation: fadeInDown 0.3s var(--ease-aero);
+}
+
+.form-status-banner.success {
+  display: flex;
+  background: rgba(34, 197, 94, 0.16);
+  border: 1.5px solid #22c55e;
+  color: #4ade80;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.25);
+}
+
+.form-status-banner.error {
+  display: flex;
+  background: rgba(239, 68, 68, 0.16);
+  border: 1.5px solid #ef4444;
+  color: #f87171;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.25);
+}
+
 /* Status Alert Banner */
 .form-status-alert {
   padding: 14px 18px;
@@ -1646,6 +1684,14 @@ h1, h2, h3, h4 {
 .btn-send-form.loading {
   opacity: 0.85;
   cursor: wait;
+}
+
+.btn-send-form.is-sent {
+  background: #16a34a !important;
+  border-color: #22c55e !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.5) !important;
+  transform: none !important;
 }
 
 .routing-target-note {
